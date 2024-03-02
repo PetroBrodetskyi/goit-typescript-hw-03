@@ -1,11 +1,7 @@
 //У цьому завдання вам належить реалізувати сценарій життя, де людина, ключ і будинок взаємодіють один з одним.
 
 class Key {
-    private readonly signature: number;
-
-    constructor() {
-    this.signature = Math.random();
-  }
+    private readonly signature: number = Math.random();
 
     getSignature(): number {
     return this.signature;
@@ -13,11 +9,7 @@ class Key {
 }
 
 class Person {
-  private key: Key;
-
-  constructor(key: Key) {
-    this.key = key;
-  }
+  constructor(private key: Key) {}
 
   getKey(): Key {
     return this.key;
@@ -25,13 +17,9 @@ class Person {
 }
 
 abstract class House {
-  protected door: boolean = false;
-  protected key: Key;
   protected tenants: Person[] = [];
 
-  constructor(key: Key) {
-    this.key = key;
-  }
+  constructor(protected key: Key, protected door: boolean = false) {}
 
   comeIn(person: Person): void {
     if (this.door) {
